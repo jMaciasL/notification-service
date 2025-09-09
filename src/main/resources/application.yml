@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: notifications-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/tododb?useSSL=false&serverTimezone=UTC
+    username: javi
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/myrealm
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+logging:
+  level:
+    com.example.notifications: DEBUG
+    org.hibernate.SQL: DEBUG
+
+
+info:
+  app:
+    name: Notifications Microservice
+    version: 0.0.1-SNAPSHOT
+    description: Microservicio de notificador de tareas
